@@ -1,0 +1,15 @@
+steps:
+  # Build the Docker image
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '-t', 'gcr.io/cloudpass-387506/image', '.']
+
+  # Docker Push
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'gcr.io/cloudpass-387506/image']
+
+
+  - name: 'gcr.io/cloud-builders/kubectl'
+    args: ['set', 'image', 'deployment/mydeploy1', 'mynode=gcr.io/CloudPass/image']
+    env:
+    - 'CLOUDSDK_COMPUTE_ZONE=us-west1'
+    - 'CLOUDSDK_CONTAINER_CLUSTER=my-first-cluster-1'
