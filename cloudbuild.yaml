@@ -1,15 +1,15 @@
 steps:
   # Build the Docker image
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', 'gcr.io/cloudpass-387506/image', '.']
+    args: ['build', '-t', 'gcr.io/cloudpass-387506/image:$COMMIT_SHA', '.']
 
   # Docker Push
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['push', 'gcr.io/cloudpass-387506/image']
+    args: ['push', 'gcr.io/cloudpass-387506/image:$COMMIT_SHA']
 
 
   - name: 'gcr.io/cloud-builders/kubectl'
-    args: ['set', 'image', 'deployment/mydeploy1', 'mynode=gcr.io/CloudPass/image']
+    args: ['set', 'image', 'deployment/mydeploy1', 'mynode=gcr.io/cloudpass-387506/image:$COMMIT_SHA']
     env:
     - 'CLOUDSDK_COMPUTE_ZONE=us-west1'
     - 'CLOUDSDK_CONTAINER_CLUSTER=my-first-cluster-1'

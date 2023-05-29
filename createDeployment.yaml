@@ -17,6 +17,6 @@ spec:
     spec:
       containers:
       - name: mynode
-        image: gcr.io/CloudPass/deakin_image0:latest
+        image: gcr.io/cloudpass-387506/deakin_image0:latest
         ports:
         - containerPort: 8080
