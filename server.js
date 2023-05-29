@@ -7,7 +7,7 @@ app.use(express.static(__dirname))
 
 var messages = [
     {name: 'Sayali', message: 'HI'},
-    {name: 'JAne', message: 'HEllo'}
+    {name: 'Bagul', message: 'completed 10.2D task'}
 ]
 app.get('/', (req,res) => {
     res.send(messages)
